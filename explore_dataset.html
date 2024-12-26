@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dataset Exploration - Regression.ai</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #FF7F50;
+            --secondary-color: #FFA07A;
+            --bg-color: #FFF5EE;
+            --card-bg: #FF7F50;
+            --card-text: #ffffff;
+            --button-bg: #FFFFFF;
+            --button-text: #FF7F50;
+            --accent-color: #FF4500;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            line-height: 1.6;
+        }
+
+        nav {
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .logo svg {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+            fill: var(--accent-color);
+        }
+
+        .logo-text {
+            font-size: 28px;
+            font-weight: bold;
+            color: black;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .logout-btn {
+            color: #FF4500;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            background-color: transparent;
+            border: 2px solid #FF4500;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .logout-btn:hover {
+            background-color: #FF4500;
+            color: white;
+            transform: scale(1.05);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .logout-btn i {
+            font-size: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .dataset-summary {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .dataset-summary h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .dataset-summary p {
+            margin-bottom: 15px;
+            color: #666;
+        }
+
+        .dataset-summary strong {
+            color: #333;
+        }
+
+        .feature-graphs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .graph-item {
+            background-color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .graph-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .graph-item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            align:center;
+        }
+
+        .button-container {
+            text-align: center;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .back-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .page-header h1 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <svg viewBox="0 0 24 24">
+                    <path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/>
+                </svg>
+                <span class="logo-text">Regression.ai</span>
+            </a>
+            <div class="nav-links">
+                <a href="/logout" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>Dataset Exploration</h1>
+        </div>
+
+        <div class="dataset-summary">
+            <h2>Dataset Summary</h2>
+            <p><strong>Total Rows:</strong> {{ dataset_summary.total_rows }}</p>
+            <p><strong>Total Columns:</strong> {{ dataset_summary.total_columns }}</p>
+            <p><strong>Features:</strong> {{ ', '.join(dataset_summary.features) }}</p>
+            <p><strong>Target Variable:</strong> {{ dataset_summary.target }}</p>
+        </div>
+
+        <div class="feature-graphs">
+            {% for graph in feature_graphs %}
+            <div class="graph-item">
+                <h3>{{ graph.feature }} Relationship</h3>
+                <img src="data:image/png;base64,{{ graph.image_base64 }}" alt="{{ graph.feature }} Scatter Plot">
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="button-container">
+            <a href="/" class="back-button">Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>

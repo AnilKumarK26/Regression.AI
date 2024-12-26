@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Regression.ai</title>
+    <link rel="icon" type="image/x-icon" href="static/ods_logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #FF7F50;
+            --secondary-color: #FFA07A;
+            --bg-color: #ffffff;
+            --text-color: #333;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container-fluid {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Animated Header */
+        .page-header {
+            position: relative;
+            padding: 2rem 0;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+        }
+
+        .page-header h1::before,
+        .page-header h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            width: 0;
+            height: 3px;
+            background-color: var(--primary-color);
+            transition: width 0.5s ease;
+        }
+
+        .page-header h1::before {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .page-header h1::after {
+            right: 50%;
+            transform: translateX(50%);
+        }
+
+        .page-header h1:hover::before,
+        .page-header h1:hover::after {
+            width: 50%;
+        }
+
+        .contact-section {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            margin-bottom: 1rem;
+            border-color: var(--primary-color);
+        }
+
+        .contact-form .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .contact-form .btn-primary:hover {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
+
+        .social-connect {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .social-connect a {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-connect a:hover {
+            color: var(--secondary-color);
+            transform: scale(1.1);
+        }
+
+        /* Animated Footer */
+        .page-footer {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 2rem 0;
+            margin-top: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-footer::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg, 
+                transparent, 
+                rgba(255,255,255,0.1), 
+                transparent
+            );
+            transform: rotate(0deg);
+            animation: slide 3s linear infinite;
+        }
+
+        @keyframes slide {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .page-footer a {
+            color: var(--white);
+            text-decoration: none;
+            position: relative;
+            display: inline-block;
+        }
+
+        .page-footer a::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--white);
+            transition: width 0.3s ease;
+        }
+
+        .page-footer a:hover::after {
+            width: 100%;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .social-connect {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <header class="page-header">
+            <h1>Contact Regression.ai</h1>
+        </header>
+
+        <section class="contact-section">
+            <form class="contact-form">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="message" class="form-label">Message</label>
+                    <textarea class="form-control" id="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+        </section>
+
+        <section class="social-connect">
+            <a href="https://wa.me/+919885593971" target="_blank" title="WhatsApp">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/anil-kumar-kedarsetty/" target="_blank" title="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="https://github.com/AnilKumarK26" target="_blank" title="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="mailto:anilkumarkedarsetty@gmail.com" title="Email">
+                <i class="fas fa-envelope"></i>
+            </a>
+        </section>
+    </div>
+
+    <footer class="page-footer">
+        <p>&copy; 2024 Regression.ai. All rights reserved.</p>
+        <a href="/aboutUs">About Us</a>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

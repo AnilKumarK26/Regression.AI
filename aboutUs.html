@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Regression.ai</title>
+    <link rel="icon" type="image/x-icon" href="static/ods_logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #FF7F50;
+            --secondary-color: #FFA07A;
+            --bg-color: #ffffff;
+            --text-color: #333;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container-fluid {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Animated Header */
+        .page-header {
+            position: relative;
+            padding: 2rem 0;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+        }
+
+        .page-header h1::before,
+        .page-header h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            width: 0;
+            height: 3px;
+            background-color: var(--primary-color);
+            transition: width 0.5s ease;
+        }
+
+        .page-header h1::before {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .page-header h1::after {
+            right: 50%;
+            transform: translateX(50%);
+        }
+
+        .page-header h1:hover::before,
+        .page-header h1:hover::after {
+            width: 50%;
+        }
+
+        /* Animated Feature Cards */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem 0;
+        }
+
+        .feature-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
+            transition: all 0.4s ease;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 15px;
+            border: 2px solid transparent;
+            transition: all 0.4s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(255, 127, 80, 0.1);
+        }
+
+        .feature-card:hover::before {
+            border-top-color: var(--primary-color);
+            border-right-color: var(--primary-color);
+            animation: border-dance 1s linear infinite;
+        }
+
+        @keyframes border-dance {
+            0% {
+                clip-path: polygon(0 0, 100% 0, 100% 2px, 0 2px);
+            }
+            25% {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 100% 100%);
+            }
+            50% {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            }
+            75% {
+                clip-path: polygon(0 0, 2px 0, 2px 100%, 2px 100%);
+            }
+            100% {
+                clip-path: polygon(0 0, 100% 0, 100% 2px, 0 2px);
+            }
+        }
+
+        .feature-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .feature-card h3::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .feature-card:hover h3::after {
+            width: 100%;
+        }
+
+        /* Animated Technology Stack */
+        .tech-stack {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 2rem;
+            position: relative;
+        }
+
+        .tech-stack ul {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            list-style: none;
+            padding: 0;
+        }
+
+        .tech-stack li {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 0.8rem 1.2rem;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            transform-origin: center;
+        }
+
+        .tech-stack li:hover {
+            transform: scale(1.05) rotate(3deg);
+            box-shadow: 0 5px 15px rgba(255, 127, 80, 0.2);
+        }
+
+        /* Team Section Styles */
+        .team-section {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .team-card {
+            background: var(--bg-color);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.4s ease;
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(255, 127, 80, 0.1);
+        }
+
+        .team-card img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--primary-color);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Animated Footer */
+        .page-footer {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 2rem 0;
+            margin-top: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-footer::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg, 
+                transparent, 
+                rgba(255,255,255,0.1), 
+                transparent
+            );
+            transform: rotate(0deg);
+            animation: slide 3s linear infinite;
+        }
+
+        @keyframes slide {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .page-footer a {
+            color: var(--white);
+            text-decoration: none;
+            position: relative;
+            display: inline-block;
+        }
+
+        .page-footer a::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--white);
+            transition: width 0.3s ease;
+        }
+
+        .page-footer a:hover::after {
+            width: 100%;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .feature-grid, .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <header class="page-header">
+            <h1>About Regression.ai</h1>
+        </header>
+
+        <section>
+            <h2>Our Mission</h2>
+            <p>Regression.ai is dedicated to providing advanced data analysis solutions, empowering researchers, data scientists, and businesses to unlock meaningful insights through cutting-edge regression techniques.</p>
+        </section>
+
+        <section class="feature-grid">
+            <div class="feature-card">
+                <h3>Advanced Analytics</h3>
+                <p>Leverage sophisticated regression models to extract deep insights from complex datasets.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Machine Learning</h3>
+                <p>Implement state-of-the-art machine learning algorithms for predictive modeling.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Data Visualization</h3>
+                <p>Transform raw data into intuitive, actionable visual representations.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Custom Solutions</h3>
+                <p>Tailored regression analysis to meet unique business and research requirements.</p>
+            </div>
+        </section>
+
+        <section class="tech-stack">
+            <h2>Technology Stack</h2>
+            <ul>
+                <li><strong>Machine Learning</strong> Scikit-learn, TensorFlow</li>
+                <li><strong>Data Analysis</strong> Pandas, NumPy</li>
+                <li><strong>Visualization</strong> Matplotlib, Seaborn</li>
+                <li><strong>Web Framework</strong> Flask, Django</li>
+            </ul>
+        </section>
+
+        <section class="team-section">
+            <h2>Our Team</h2>
+            <div class="team-grid">
+                <div class="team-card">
+                    <img src="static/anil.jpg" alt="Team Member" type="image/jpg">
+                    <h3>Machine Learning Engineer</h3>
+                    <p>Anil Kumar Kedarsetty</p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/anil-kumar-kedarsetty/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com/AnilKumarK26" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="mailto:anilkumarkedarsetty@gmail.com"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <img src="static/prasanth.jpg" alt="Team Member">
+                    <h3>Web Designer</h3>
+                    <p>Prasanthkumar Bhumula</p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/prasanthkumar-bhumula-71bb5125a/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com/prasanth1221" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="mailto:prasanthbhumula@gmail.com"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <img src="static/jitendra.jpg" alt="Team Member">
+                    <h3>Machine Learning Engineer</h3>
+                    <p>Jitendra Kolli</p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/jitendrakolli/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="mailto:jitendrakolli@gmail.com"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="page-footer">
+        <p>&copy; 2024 Regression.ai. All rights reserved.</p>
+        <a href="/contact">Contact Us</a>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Justification Results | Regression.ai</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #FF7F50;
+            --secondary-color: #FFA07A;
+            --bg-color: #FFF5EE;
+            --justify-color: #9C27B0;
+            --text-color: #333;
+            --success-color: #4CAF50;
+            --warning-color: #FFC107;
+            --error-color: #F44336;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        nav {
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .logo svg {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+            fill: var(--primary-color);
+        }
+
+        .logo-text {
+            font-size: 28px;
+            font-weight: bold;
+            color: black;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .results-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+        }
+
+        .results-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .results-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .results-header h1 {
+            color: var(--justify-color);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .results-header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .plot-container {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .plot-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .plot-title {
+            font-size: 1.5rem;
+            color: var(--justify-color);
+            margin-bottom: 1rem;
+        }
+
+        .best-split {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .best-split h2 {
+            color: var(--justify-color);
+            margin-bottom: 1rem;
+        }
+
+        .best-split p {
+            font-size: 1.1rem;
+            color: #444;
+        }
+
+        .metrics-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .metrics-table th, 
+        .metrics-table td {
+            padding: 1rem;
+            text-align: center;
+            border: 1px solid #e0e0e0;
+        }
+
+        .metrics-table th {
+            background: var(--justify-color);
+            color: white;
+            font-weight: 600;
+        }
+
+        .metrics-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .metrics-table tr:hover {
+            background: #f1f1f1;
+        }
+
+        .highlight-row {
+            background: #e3f2fd !important;
+            font-weight: 500;
+        }
+
+        .metric-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .metric-card h3 {
+            color: var(--justify-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--justify-color);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: #f0f0f0;
+            color: var(--text-color);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        @media (max-width: 768px) {
+            .results-container {
+                padding: 1rem;
+            }
+
+            .results-header h1 {
+                font-size: 2rem;
+            }
+
+            .metrics-table {
+                display: block;
+                overflow-x: auto;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <svg viewBox="0 0 24 24">
+                    <path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/>
+                </svg>
+                <span class="logo-text">Regression.ai</span>
+            </a>
+        </div>
+    </nav>
+
+    <div class="results-container">
+        <div class="results-card">
+            <div class="results-header">
+                <h1>Model Justification Results: {{ model_name }}</h1>
+                <p>Analysis of model performance across different train-test splits</p>
+            </div>
+
+            <div class="plot-container">
+                <h2 class="plot-title">Performance Analysis Plots</h2>
+                <img src="data:image/png;base64,{{ plot_url }}" alt="Model Performance Plots">
+            </div>
+
+            <div class="best-split">
+                <h2>Optimal Training Split: {{ best_split }}%</h2>
+                <p>This split ratio provides the best balance between model performance and generalization capability.</p>
+            </div>
+
+            <table class="metrics-table">
+                <thead>
+                    <tr>
+                        <th>Training Size (%)</th>
+                        <th>Mean Absolute Error</th>
+                        <th>Mean Squared Error</th>
+                        <th>R² Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for result in results %}
+                    <tr {% if result.train_size == best_split %}class="highlight-row"{% endif %}>
+                        <td>{{ result.train_size }}</td>
+                        <td>{{ "%.4f"|format(result.mae) }}</td>
+                        <td>{{ "%.4f"|format(result.mse) }}</td>
+                        <td>{{ "%.4f"|format(result.r2) }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <div class="action-buttons">
+                <a href="/justification" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Model Selection
+                </a>
+                <a href="/models" class="btn btn-primary">
+                    <i class="fas fa-chart-line"></i>
+                    Try the  Model
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

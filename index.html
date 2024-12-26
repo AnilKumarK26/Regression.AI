@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regression.ai - Advanced Regression Analysis</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #FF7F50; /* Coral orange background */
+        }
+
+        /* Navigation Styles */
+        nav {
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .logo svg {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .logo-text {
+            font-size: 28px;
+            font-weight: bold;
+            color:black; /* Darker orange for logo text */
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-link {
+            color: #FF4500;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            background-color: transparent;
+            border: 2px solid #FF4500;
+        }
+
+        .nav-link:hover {
+            background-color: #FF4500;
+            color: white;
+            transform: scale(1.05);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #FF6B35 0%, #FF4500 100%);
+            color: white;
+            padding: 100px 0;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+        }
+
+        .hero-content {
+            width: 50%;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .hero-graphic {
+            width: 50%;
+        }
+
+        /* Hero Graphic Animation */
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-graphic svg {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .hero-title {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: white;
+            color: #FF4500;
+        }
+
+        .btn-secondary {
+            border: 2px solid white;
+            color: white;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+            transform: scale(1.05);
+        }
+
+        /* Features Section */
+        .features {
+            background-color: white;
+            padding: 100px 0;
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .features-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 50px;
+            color: #FF4500;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .feature-card {
+            background-color: #FFF5E6;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-title {
+            color: #FF4500;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #FF4500;
+            color: white;
+            padding: 50px 0;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 15px;
+        }
+
+        .footer-links a {
+            color: #FFD700;
+            text-decoration: none;
+            margin-left: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-container, 
+            .features-grid {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-content, 
+            .hero-graphic,
+            .features-grid {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <svg fill="#FF4500" viewBox="0 0 24 24">
+                    <path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/>
+                </svg>
+                <span class="logo-text">Regression.ai</span>
+            </div>
+            <div class="nav-links">
+                <a href="/aboutUs" class="nav-link">About Us</a>
+                <a href="/contact" class="nav-link">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">Advanced Regression Analysis</h1>
+                <p class="hero-subtitle">Unlock insights from your data with powerful regression techniques and machine learning algorithms.</p>
+                <div class="hero-cta">
+                    <a href="/login" class="btn btn-primary">Get Started</a>
+                    <a href="#features" class="btn btn-secondary">Learn More</a>
+                </div>
+            </div>
+            <div class="hero-graphic">
+                <svg viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50 350 L150 250 L250 300 L350 150 L450 200 L550 50" stroke="white" stroke-width="4" fill="none"/>
+                    <circle cx="50" cy="350" r="10" fill="white"/>
+                    <circle cx="150" cy="250" r="10" fill="white"/>
+                    <circle cx="250" cy="300" r="10" fill="white"/>
+                    <circle cx="350" cy="150" r="10" fill="white"/>
+                    <circle cx="450" cy="200" r="10" fill="white"/>
+                    <circle cx="550" cy="50" r="10" fill="white"/>
+                </svg>
+            </div>
+        </div>
+    </header>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="features-container">
+            <h2 class="features-title">Regression Techniques We Support</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3 class="feature-title">Linear Regression</h3>
+                    <p>Predict continuous outcomes using linear relationships between variables.</p>
+                </div>
+                <div class="feature-card">
+                    <h3 class="feature-title">Lasso Regression</h3>
+                    <p>Apply L1 regularization to prevent overfitting and perform feature selection.</p>
+                </div>
+                <div class="feature-card">
+                    <h3 class="feature-title">Quantile Regression</h3>
+                    <p>Model and analyze different quantiles of the conditional distribution.</p>
+                </div>
+                <div class="feature-card">
+                    <h3 class="feature-title">Polynomial Regression</h3>
+                    <p>Model complex, non-linear relationships in your datasets.</p>
+                </div>
+                <div class="feature-card">
+                    <h3 class="feature-title">Decision Tree Regression</h3>
+                    <p>Create predictive models using tree-based decision-making structures.</p>
+                </div>
+                <div class="feature-card">
+                    <h3 class="feature-title">Random Forest Regression</h3>
+                    <p>Ensemble method combining multiple decision trees for improved accuracy.</p>
+                </div>
+                <div class="feature-card">
+                    <h3 class="feature-title">Support Vector Regression (SVR)</h3>
+                    <p>Leverage support vector machine techniques for robust regression.</p>
+                </div>
+                <div class="feature-card">
+                    <h3 class="feature-title">K-Nearest Neighbors Regression</h3>
+                    <p>Predict values based on the average of k-nearest neighboring data points.</p>
+                </div>
+                <div class="feature-card">
+                    <h3 class="feature-title">Isotonic Regression</h3>
+                    <p>Perform nonparametric regression with monotonic constraints.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div>
+                <h4 class="logo-text">Regression.ai</h4>
+                <p>Advanced Data Analysis Platform</p>
+            </div>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
